@@ -5,7 +5,6 @@ public class CardTrick {
     private Card[] hand;
     private static final String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
-    // Inner Card class
     public static class Card {
         private int value;
         private String suit;
@@ -29,7 +28,6 @@ public class CardTrick {
         }
     }
 
-    // CardTrick constructor
     public CardTrick() {
         hand = new Card[7];
         Random rand = new Random();
@@ -41,12 +39,9 @@ public class CardTrick {
         }
     }
 
-    // Prints user's info
     public void printInfo() {
-        // Your name and info go here
         System.out.println("Author: Tushar Piplani");
-        System.out.println("Date: 07/06/2023");
-        // Add "I'm done!" comment
+        System.out.println("Date: 07/06/2023")
         // I'm done!
     }
 
