@@ -45,7 +45,6 @@ public class CardTrick {
         // I'm done!
     }
 
-    // Search for user's card
     public boolean searchCard(Card card) {
         for (Card c : hand) {
             if (c.getValue() == card.getValue() && c.getSuit().equals(card.getSuit())) {
