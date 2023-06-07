@@ -1,66 +1,97 @@
 package exercise1;
 
+import java.util.Scanner;
+
 /**
  * A class that fills a hand of 7 cards with random Card Objects and then asks the user to pick a card.
  * It then searches the array of cards for the match to the user's card. 
  * To be used as starting code in Exercise
  *
- * @author Mehrdad Iravani
- * @author dancye
- * @author Paul Bonenfant 
- */
+ * @author jameeet kaur
+ **/
+  
 public class CardTrick {
     
     public static void main(String[] args) {
         
-        Card[] hand = new Card[7];
-
-        for (int i = 0; i < hand.length; i++) {
-            Card card = new Card();
-            //card.setValue(insert call to random number generator here)
-            // 
-            //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
-            // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
-            //       Don't worry about duplicates at this point
+        Card[] magicHand = new Card[7];
+        
+        for (int i=0; i<magicHand.length; i++)
+        {
+            Card c = new Card();
+           
+          c.setValue((int)(Math.random() * 13 + 1));
+           
+          c.setSuit(Card.SUITS[(int)(Math.random() *3+0)]);
+        
+            magicHand[i]=c;
         }
 
-        // insert code to ask the user for Card value and suit, create their card
-        // and search the hand here. 
-        // Hint: You can ask for values 1 to 10, and then
-        //       11 for jack, 12 for queen, etc. (remember arrays are 0-based though)
-        //       1 for Hearts, 2 for Diamonds, etc. (remember arrays are 0-based though)
-        // 
-        // Then loop through the cards in the array to see if there's a match.
-        
-        // If the guess is successful, invoke the printInfo() method below.
-        
-    }
+      
+        Scanner sc=  new Scanner(System.in);
+        System.out.println("Please enter a number from 1 to 13");
+        int entered_num = sc.nextInt();
+        while(entered_num <1 || entered_num>13){
+                    System.out.println("Incorrect Input, Please enter a number from 1 to 13");
+                    entered_num = sc.nextInt();
+        }
 
-    /**
-     * A simple method to print out personal information. Follow the instructions to 
-     * replace this information with your own.
-     * @author Paul Bonenfant Jan 2022
-     */
-    private static void printInfo() {
+        System.out.println("Please enter the suit from Diamonds, Spades, Clubs, Hearts");
+        String str = sc.next();
+       
+        
+        while( str.equals("Hearts")==false && str.equals("Clubs")==false && str.equals("Spades")==false && str.equals("Diamonds")==false ){
+            System.out.println("Incorrect Input, Please enter a correct Suit");
+                    str = sc.next();
+        }
+        
+       int ans = 0;
+     
+
+       System.out.println("The Values set by System are as follows : \n");
+for(int i = 0;i<magicHand.length; i++){
+
+   
+    System.out.println("Value = "+magicHand[i].getValue()+"\tSuit = "+magicHand[i].getSuit() );
+}
     
-        System.out.println("Congratulations, you guessed right!");
-        System.out.println();
-        
-        System.out.println("My name is Paul, but you can call me prof, Paul or sir");
-        System.out.println();
-        
-        System.out.println("My career ambitions:");
-        System.out.println("-- Be more active on LinkedIn");
-        System.out.println("-- Have a semester with no violations of academic integrity!");
-	System.out.println();	
+    System.out.println("\n\nYour Selections are Value: "+entered_num + "\tSuit = "+str+"\n");
+     
 
-        System.out.println("My hobbies:");
-        System.out.println("-- Investing");
-        System.out.println("-- Cooking");
-        System.out.println("-- Reading/Watching TV");
-        System.out.println("-- Riding my motorcycle");
+        for(int i=0; i<magicHand.length;i++)
+        {
+            if((magicHand[i].getValue()==entered_num) && (magicHand[i].getSuit().equals(str))){
+                ans = 1;
+                break;
+            }
+                
+        }
+        
+        
+        
+       if(ans==1) System.out.println("Congratulations, You Won\n ");
+       else System.out.println("Bad Luck, No Match, Try again\n");
+        sc.close();
+        
 
-        System.out.println();
+    // New Code for Hardcoded Card object(Lucky Card)
+       Card c = new Card();
+        c.setValue(7);
+        c.setSuit("Hearts");
+        int ans2=0;
+          for(int i=0; i<magicHand.length;i++)
+        {
+            if((magicHand[i].getValue()==c.getValue()) && (magicHand[i].getSuit().equals(c.getSuit()))){
+                ans2 = 1;
+                break;
+            }
+                
+        }
+        
+        System.out.println("Lucky Card:\n\t Value = "+ c.getValue() + "\n\tSuit = "+ c.getSuit()+"\n");
+        System.out.print("Did the Lucky Card Match : \t");
+        if(ans2==1) System.out.println("Yes\n");
+        else System.out.println("No\n");
         
     
     }
